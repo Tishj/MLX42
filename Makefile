@@ -6,7 +6,7 @@
 #    By: w2wizard <w2wizard@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/15 15:06:20 by w2wizard      #+#    #+#                  #
-#    Updated: 2022/02/14 14:56:53 by lde-la-h      ########   odam.nl          #
+#    Updated: 2022/02/17 15:42:51 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ endif
 
 # /usr/bin/find is explicitly mentioned here for Windows compilation under Cygwin
 # //= Files =// #
-SRCS	=	$(shell /usr/bin/find ./src -iname "*.c") lib/glad/glad.c
+SRCS	=	$(shell /usr/bin/find ./src -iname "*.c") lib/glad/glad.c lib/lodepng/lodepng.c
 OBJS	=	${SRCS:.c=.o}
 
 # //= Rules =// #
@@ -41,7 +41,7 @@ OBJS	=	${SRCS:.c=.o}
 all: $(NAME)
 	
 %.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) $(ARCHIVE) && printf "$(GREEN)$(BOLD)\rCompiling: $(notdir $<)\r\e[35C[OK]\n$(RESET)"
+	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) $(ARCHIVE) && printf "$(GREEN)$(BOLD)\rCompiling: $(notdir $<)\r\e[35C[OK]\n$(RESET)"
 
 $(NAME): $(OBJS)
 	@ar rc $(NAME) $(OBJS) 
